@@ -1,0 +1,33 @@
+{
+  "app": [
+    {
+      "uid": "uid user",
+      "backgroundColorChecklist": "#ff55ff",
+      "textColorChecklist": "#554455",
+      "checklist": {
+        "title": "titulo",
+        "content": "content checklist",
+        "complete": false,
+        "createdAt": "timestamp"
+      }
+    }
+  ],
+  "geralSettings": [
+    {
+      "titleApp": "",
+      "headColor": "",
+      "headBackgroundColor": "",
+      "footerColor": "",
+      "textFooterColor": "",
+      "version": ""
+    }
+  ],
+  "users": [
+    {
+      "uid": "uid user",
+      "name": "Jhol",
+      "email": "email@email.com",
+      "permission": "admin | normal"
+    }
+  ]
+}
