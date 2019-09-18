@@ -2,7 +2,7 @@
   <v-app id="app">
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
-        <v-list-item @click="">
+        <v-list-item to="home">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -10,12 +10,31 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="">
+
+        <v-list-item to="changepassword">
           <v-list-item-action>
             <v-icon>mdi-contact-mail</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Contact</v-list-item-title>
+            <v-list-item-title>Change Password</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item to="settings">
+          <v-list-item-action>
+            <v-icon>mdi-contact-mail</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Settings</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item to="about">
+          <v-list-item-action>
+            <v-icon>mdi-contact-mail</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>About</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -36,8 +55,6 @@
 </template>
 
 <script>
-import Notify from "vue-notify-me";
-
 export default {
   props: {
     source: String
@@ -47,9 +64,7 @@ export default {
       drawer: null
     };
   },
-  created() {
-
-  }
+  created() {}
 };
 </script>
 
