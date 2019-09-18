@@ -5,6 +5,7 @@
       "backgroundColorChecklist": "#ff55ff",
       "textColorChecklist": "#554455",
       "checklist": {
+        "idChecklist": "",
         "title": "titulo",
         "content": "content checklist",
         "complete": false,
