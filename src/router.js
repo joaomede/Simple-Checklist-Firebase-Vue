@@ -14,27 +14,27 @@ export default new Router({
     {
       path: '/home',
       name: 'Home',
-      component: () => import('./page/home')
+      component: () => import('./page/Home')
     },
     {
       path: '/about',
       name: 'About',
-      component: () => import('./page/about')
+      component: () => import('./page/About')
     },
     {
       path: '/changepassword',
       name: 'Changepassword',
-      component: () => import('./page/changepassword')
+      component: () => import('./page/Changepassword')
     },
     {
       path: '/login',
       name: 'Login',
-      component: () => import('./page/login')
+      component: () => import('./page/Login')
     },
     {
       path: '/settings',
       name: 'Settings',
-      component: () => import('./page/settings')
+      component: () => import('./page/Settings')
     }
   ]
 })
