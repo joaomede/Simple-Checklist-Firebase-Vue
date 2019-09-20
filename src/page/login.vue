@@ -46,6 +46,31 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    login() {
+      this.$firebase
+        .auth()
+        .signInWithEmailAndPassword(
+          this.localUser.email,
+          this.localUser.password
+        )
+        .then(resp => {
+          this.$router.replace("home");
+
+          this.$db
+            .collection("users")
+            .doc(resp.user.uid)
+            .get()
+            .then(doc => {
+              this.$store.dispatch("setUser", doc.data());
+              console.log(`Wellcome Back ${doc.data().nome}`);
+            });
+        })
+        .catch(() => {
+          console.log("Authentication issues, check email and password");
+        });
+    },
   }
 };
 </script>
