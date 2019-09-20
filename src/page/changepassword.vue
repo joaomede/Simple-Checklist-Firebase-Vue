@@ -32,6 +32,25 @@ export default {
         min: v => v.length >= 8 || "Min 8 characters"
       }
     };
+  },
+  methods: {
+    changePassword() {
+      const user = this.$firebase.auth().currentUser;
+      if (this.password1 === this.password1) {
+        user
+          .updatePassword(this.password1)
+          .then(() => {
+            // ok
+          })
+          .catch(error => {
+            // error
+          });
+        this.password1 = "";
+        this.password2 = "";
+      } else {
+        // non-equal password
+      }
+    }
   }
 };
 </script>
