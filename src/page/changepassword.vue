@@ -8,15 +8,24 @@
       <h2 class="text-center">Change Your Password</h2>
       <v-text-field
         v-model="password"
-        :append-icon="show1 ? 'visibility' : 'visibility_off'"
         :rules="[rules.required, rules.min]"
-        :type="show1 ? 'text' : 'password'"
-        name="input-10-1"
-        label="Normal with hint text"
+        type="Password"
+        label="New password"
         hint="At least 8 characters"
         counter
-        @click:append="show1 = !show1"
       ></v-text-field>
+      <v-text-field
+        v-model="password"
+        :rules="[rules.required, rules.min]"
+        type="Password"
+        label="Repeat new password"
+        hint="At least 8 characters"
+        counter
+      ></v-text-field>
+      <div class="text-center my-2">
+        <v-btn color="primary" class="ma-2" to="home">Back</v-btn>
+        <v-btn color="green" class="ma-2" @click="changePassword()">Save</v-btn>
+      </div>
     </v-card>
   </div>
 </template>
