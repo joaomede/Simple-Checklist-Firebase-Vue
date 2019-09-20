@@ -31,7 +31,11 @@
 export default {
   data() {
     return {
-      title: "Preliminary report",
+      localUser: {
+        name: "",
+      email: "",
+        password: ""
+      },
       email: "",
       rules: {
         required: value => !!value || "Required.",
