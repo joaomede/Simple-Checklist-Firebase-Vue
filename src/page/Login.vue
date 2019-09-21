@@ -75,6 +75,19 @@ export default {
           console.log("Authentication issues, check email and password");
         });
     },
+    register() {
+      this.$firebase
+        .auth()
+        .signInWithEmailAndPassword(this.localUser.email, this.localUser.password)
+        .then(resp => {
+          this.setColorSchemeInit(resp);
+          this.dialogRegister = false;
+          console.log("Registration successfully Complete");
+        })
+        .catch(() => {
+          console.log("Error trying to register name, contact administrator");
+        });
+    },
     setColorSchemeInit(resp) {
       const colorSchemeDefault = {
         textColorChecklist: "#000000",
