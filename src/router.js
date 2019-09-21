@@ -1,40 +1,77 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
+import VueCookie from "vue-cookie"
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '*',
+      redirect: 'login',
+    },
     {
       path: '/',
       redirect: 'login',
     },
     {
-      path: '/home',
-      name: 'Home',
-      component: () => import('./page/Home')
+      path: '/login',
+      name: 'Login',
+      component: () => import('./page/Login'),
+      meta: { requerAuth: false }
     },
     {
       path: '/about',
       name: 'About',
-      component: () => import('./page/About')
+      component: () => import('./page/About'),
+      meta: { requerAuth: false }
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: () => import('./page/Home'),
+      meta: { requerAuth: true }
     },
     {
       path: '/changepassword',
       name: 'Changepassword',
-      component: () => import('./page/Changepassword')
+      component: () => import('./page/Changepassword'),
+      meta: { requerAuth: true }
     },
-    {
-      path: '/login',
-      name: 'Login',
-      component: () => import('./page/Login')
-    },
+
     {
       path: '/settings',
       name: 'Settings',
-      component: () => import('./page/Settings')
+      component: () => import('./page/Settings'),
+      meta: { requerAuth: true }
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  let auth = to.matched.some(record => record.meta.requerAuth);
+  const user = VueCookie.get("user");
+
+  if (auth) {
+    if (user != null) {
+      if (user.uid != null) {
+        next();
+      } else {
+        next({
+          path: "/login"
+        });
+      }
+    } else {
+      next({
+        path: "/login"
+      });
+    }
+  } else {
+    next();
+  }
+
+});
+
+export default router;
