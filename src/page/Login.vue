@@ -126,6 +126,17 @@ export default {
           this.$notify("Error trying to register name, contact administrator", "red");
         });
     },
+    forgotPassword() {
+      this.$firebase
+        .auth()
+        .sendPasswordResetEmail(this.userLocal.email)
+        .then(() => {
+          console.log("Recovery email sent successfully");
+        })
+        .catch(() => {
+          console.log("Error trying to retrieve email");
+        });
+    }
   }
 };
 </script>
