@@ -1,9 +1,7 @@
 <template>
   <div class="centralDiv">
     <v-card
-      max-width="344"
-      class="mx-auto my-card"
-      style="justify-content: center; align-items: center"
+      class="loginBox"
     >
       <h2 class="text-center">Change Your Password</h2>
       <v-text-field
