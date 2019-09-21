@@ -5,7 +5,9 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import firebase from "./plugins/firebase";
 import "./style/style.css"
+import VueCookie from "vue-cookie";
 
+Vue.use(VueCookie);
 Vue.use(firebase);
 
 
