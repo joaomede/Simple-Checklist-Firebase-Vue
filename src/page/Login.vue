@@ -71,6 +71,8 @@ export default {
           console.log("Authentication issues, check email and password");
         });
     },
+    register() {},
+    forgotPassword() {}
   }
 };
 </script>
