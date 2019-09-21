@@ -51,10 +51,7 @@ export default {
     login() {
       this.$firebase
         .auth()
-        .signInWithEmailAndPassword(
-          this.localUser.email,
-          this.localUser.password
-        )
+        .signInWithEmailAndPassword(this.localUser.email, this.localUser.password)
         .then(resp => {
           this.$router.replace("home");
 
