@@ -1,28 +1,33 @@
 <template>
   <div class="centralDiv">
-    <v-card
-      max-width="344"
-      class="mx-auto my-card"
-      style="justify-content: center; align-items: center"
-    >
-      <h2 class="text-center">Change Your Password</h2>
-      <v-col cols="12" sm="6">
-        <v-text-field
-          v-model="title"
-          :rules="[rules.required, rules.counter]"
-          label="Title"
-          counter
-          maxlength="20"
-        ></v-text-field>
-      </v-col>
+    <v-card class="loginBox">
+      <v-container>
+        <v-row>
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="localUser.email"
+              :rules="[rules.required, rules.email]"
+              label="E-mail"
+            ></v-text-field>
+          </v-col>
 
-      <v-col cols="12" sm="6">
-        <v-text-field
-          v-model="email"
-          :rules="[rules.required, rules.email]"
-          label="E-mail"
-        ></v-text-field>
-      </v-col>
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="localUser.password"
+              :rules="[rules.required, rules.min]"
+              label="Your Password"
+              type="Password"
+            ></v-text-field>
+            <div class="text-center my-2">
+              <v-btn color="green" class="ma-2" @click="login()">Login</v-btn>
+            </div>
+            <div class="text-center my-2">
+              <v-btn color="primary" class="ma-2" @click="dialogForgot == true">Forgot Password</v-btn>
+              <v-btn color="primary" class="ma-2" @click="dialogRegister == true">Register</v-btn>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-card>
   </div>
 </template>
@@ -33,7 +38,7 @@ export default {
     return {
       localUser: {
         name: "",
-      email: "",
+        email: "",
         password: ""
       },
       rules: {
