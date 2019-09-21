@@ -75,8 +75,27 @@ export default {
           console.log("Authentication issues, check email and password");
         });
     },
-    register() {},
-    forgotPassword() {}
+    setUserProfile(resp) {
+      const newUser = {
+        uid: resp.user.uid,
+        name: this.userLocal.name,
+        email: this.userLocal.email,
+        permission: "normal"
+      };
+      this.$db
+        .collection("users")
+        .doc(resp.user.uid)
+        .set(newUser)
+        .then(() => {
+          this.$q.cookies.set("user", resp.user);
+          this.$store.dispatch("setUser");
+          this.$notify(`Welcome ${this.userLocal.name}`, "green");
+          this.$router.replace("home");
+        })
+        .catch(err => {
+          this.$notify("Error trying to register name, contact administrator", "red");
+        });
+    },
   }
 };
 </script>
