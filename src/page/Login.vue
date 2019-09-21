@@ -75,6 +75,23 @@ export default {
           console.log("Authentication issues, check email and password");
         });
     },
+    setColorSchemeInit(resp) {
+      const colorSchemeDefault = {
+        textColorChecklist: "#000000",
+        backgroundColorChecklist: "#ffffff",
+        uid: resp.user.uid
+      };
+      this.$db
+        .collection("app")
+        .doc(resp.user.uid)
+        .set(colorSchemeDefault)
+        .then(() => {
+          this.setUserProfile(resp);
+        })
+        .catch(err => {
+          this.$notify("Error trying to register name, contact administrator", "red");
+        });
+    },
     setUserProfile(resp) {
       const newUser = {
         uid: resp.user.uid,
