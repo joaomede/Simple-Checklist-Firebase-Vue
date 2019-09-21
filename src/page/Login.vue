@@ -60,15 +60,15 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.localUser.email, this.localUser.password)
         .then(resp => {
+          this.$cookie.set("user", resp.user, 2);
           this.$router.replace("home");
-
           this.$db
             .collection("users")
             .doc(resp.user.uid)
             .get()
             .then(doc => {
               this.$store.dispatch("setUser", doc.data());
-              console.log(`Wellcome Back ${doc.data().nome}`);
+              console.log(`Welcome Back ${doc.data().name}`);
             });
         })
         .catch(() => {
