@@ -39,7 +39,8 @@ export default {
       localUser: {
         name: "",
         email: "",
-        password: ""
+        password: "",
+        password1: ""
       },
       rules: {
         min: v => v.length >= 8 || "Min 8 characters",
