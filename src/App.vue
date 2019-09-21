@@ -40,10 +40,27 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="indigo" dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Simple Checklist</v-toolbar-title>
-    </v-app-bar>
+    <v-row class="child-flex">
+      <div>
+        <v-toolbar>
+          <v-app-bar-nav-icon
+            @click.stop="drawer = !drawer"
+          ></v-app-bar-nav-icon>
+
+          <v-toolbar-title>Simple Checklist</v-toolbar-title>
+
+          <div class="flex-grow-1"></div>
+
+          <v-btn icon>
+            <v-icon>fas fa-sign-in-alt</v-icon>
+          </v-btn>
+
+          <v-btn icon>
+            <v-icon>fas fa-sign-out-alt</v-icon>
+          </v-btn>
+        </v-toolbar>
+      </div>
+    </v-row>
 
     <v-content>
       <router-view> </router-view>
