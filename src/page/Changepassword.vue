@@ -43,19 +43,21 @@ export default {
   methods: {
     changePassword() {
       const user = this.$firebase.auth().currentUser;
-      if (this.password1 === this.password1) {
+      if (this.password1 === this.password2) {
         user
           .updatePassword(this.password1)
           .then(() => {
-            // ok
+            console.log("Password updated successfully");
+            this.dialog = false;
           })
           .catch(error => {
-            // error
+            console.log("Error updating password" + error);
           });
         this.password1 = "";
         this.password2 = "";
       } else {
-        // non-equal password
+        console.log("Passwords are different, they must be identical");
+        this.dialog = false;
       }
     }
   }
