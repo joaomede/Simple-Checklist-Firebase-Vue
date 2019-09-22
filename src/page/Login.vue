@@ -176,15 +176,23 @@ export default {
     forgotPassword() {
       this.$firebase
         .auth()
-        .sendPasswordResetEmail(this.userLocal.email)
+        .sendPasswordResetEmail(this.localUser.email)
         .then(() => {
           console.log("Recovery email sent successfully");
         })
-        .catch(() => {
-          console.log("Error trying to retrieve email");
+        .catch(err => {
+          console.log("Error trying to retrieve email: " + err);
         });
+    },
+    checkLogin() {
+      if (this.user != null) {
+        this.$router.replace("home");
+      }
     }
-  }
+  },
+  created () {
+    this.checkLogin();
+  },
 };
 </script>
 
