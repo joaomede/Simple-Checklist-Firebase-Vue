@@ -124,15 +124,16 @@ export default {
     register() {
       this.$firebase
         .auth()
-        .signInWithEmailAndPassword(this.localUser.email, this.localUser.password)
+        .createUserWithEmailAndPassword(this.localUser.email, this.localUser.password)
         .then(resp => {
           this.setColorSchemeInit(resp);
           this.dialogRegister = false;
           console.log("Registration successfully Complete");
         })
-        .catch(() => {
-          console.log("Error trying to register name, contact administrator");
+        .catch(err => {
+          console.log("Error trying to register name, contact administrator: " + err);
         });
+      this.dialogRegister = false;
     },
     setColorSchemeInit(resp) {
       const colorSchemeDefault = {
