@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {db} from "./plugins/firebase"
 import VueCookies from "vue-cookies"
 
 Vue.use(Vuex)
@@ -58,8 +59,8 @@ export default new Vuex.Store({
           .onSnapshot(querySnapshot => {
             querySnapshot.forEach(doc => {
               state.settingsColor = {};
-              state.settingsColor.backgroundColor = doc.data().backgroundColor;
-              state.settingsColor.textColor = doc.data().textColor;
+              state.settingsColor.textColorChecklist = doc.data().textColorChecklist;
+              state.settingsColor.backgroundColorChecklist = doc.data().backgroundColorChecklist;
             });
           });
       }
