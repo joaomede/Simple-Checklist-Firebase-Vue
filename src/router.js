@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import VueCookie from "vue-cookie"
+import VueCookies from "vue-cookies"
 
 Vue.use(VueRouter)
 
@@ -52,7 +52,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   let auth = to.matched.some(record => record.meta.requerAuth);
-  const user = VueCookie.get("user");
+  const user = VueCookies.get("user");
 
   if (auth) {
     if (user != null) {

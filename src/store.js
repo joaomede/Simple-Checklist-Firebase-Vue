@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VueCookies from "vue-cookies"
 
 Vue.use(Vuex)
 
@@ -28,8 +29,7 @@ export default new Vuex.Store({
         });
       });
 
-      const cookies = process.env.SERVER ? Cookies.parseSSR(ssrContext) : Cookies; // otherwise we're on client
-      const user = cookies.get("user");
+      const user = VueCookies.get("user")
 
       if (user != null) {
         db.collection("users")

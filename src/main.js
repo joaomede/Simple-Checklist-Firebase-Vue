@@ -4,9 +4,12 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import firebase from "./plugins/firebase";
+import VueCookies from "vue-cookies";
 import mixinsComputed from "./plugins/mixinsComputed";
 
-Vue.use(VueCookie);
+VueCookies.config("2d");
+
+Vue.use(VueCookies);
 Vue.use(firebase);
 Vue.mixin(mixinsComputed);
 

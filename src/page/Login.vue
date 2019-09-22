@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import { stringify } from "querystring";
 export default {
   data() {
     return {
@@ -105,7 +106,7 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.localUser.email, this.localUser.password)
         .then(resp => {
-          this.$cookie.set("user", resp.user, 2);
+          this.$cookies.set("user", JSON.stringify(resp.user));
           this.$router.replace("home");
           this.$db
             .collection("users")
@@ -162,7 +163,7 @@ export default {
         .doc(resp.user.uid)
         .set(newUser)
         .then(() => {
-          this.$q.cookies.set("user", resp.user);
+          this.$cookies.set("user", resp.user);
           this.$store.dispatch("setUser");
           this.$notify(`Welcome ${this.userLocal.name}`, "green");
           this.$router.replace("home");
