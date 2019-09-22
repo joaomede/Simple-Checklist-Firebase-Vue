@@ -4,12 +4,11 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import firebase from "./plugins/firebase";
-import "./style/style.css"
-import VueCookie from "vue-cookie";
+import mixinsComputed from "./plugins/mixinsComputed";
 
 Vue.use(VueCookie);
 Vue.use(firebase);
-
+Vue.mixin(mixinsComputed);
 
 Vue.config.productionTip = false;
 
