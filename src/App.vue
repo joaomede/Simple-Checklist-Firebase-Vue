@@ -58,9 +58,9 @@
           </v-btn>
         </v-app-bar>
       </div>
-    <v-content>
-      <router-view> </router-view>
-    </v-content>
+      <v-content>
+        <router-view> </router-view>
+      </v-content>
     </v-row>
 
     <v-footer color="indigo" app>
@@ -71,15 +71,25 @@
 
 <script>
 export default {
-  props: {
-    source: String
-  },
   data() {
     return {
       drawer: null
     };
   },
-  created() {}
+  methods: {
+    logout() {
+      this.$firebase.auth().signOut();
+      this.$cookies.remove("user");
+      this.$store.dispatch("setUser");
+      this.$router.replace("login");
+    },
+    init() {
+      this.$store.dispatch("setUser");
+    }
+  },
+  created() {
+    this.init();
+  }
 };
 </script>
 
