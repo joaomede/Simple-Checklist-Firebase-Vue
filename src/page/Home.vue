@@ -122,24 +122,24 @@ export default {
         console.log("Erro, the content is empty");
       } else {
         this.databaseChecklist
-        .add(this.checklist)
-        .then(ref => {
-          const update = {
-            idChecklist: ref.id,
-            createdAt: this.$timestamp
-          };
-          ref
-            .update(update)
-            .then(() => {
+          .add(this.checklist)
+          .then(ref => {
+            const update = {
+              idChecklist: ref.id,
+              createdAt: this.$timestamp
+            };
+            ref
+              .update(update)
+              .then(() => {
                 console.log("ok");
-            })
-            .catch(() => {
+              })
+              .catch(() => {
                 console.log("erro");
-            });
-        })
-        .catch(() => {
+              });
+          })
+          .catch(() => {
             console.log("erro");
-        });
+          });
         this.dialogCreateNewChecklist = false;
       }
     },
