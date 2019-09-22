@@ -9,7 +9,8 @@
         "title": "titulo",
         "content": "content checklist",
         "complete": false,
-        "createdAt": "timestamp"
+        "createdAt": "timestamp",
+        "finishDate": "timestamp"
       }
     }
   ],
@@ -23,6 +24,9 @@
       "version": ""
     }
   ],
+  "version": {
+    "version": "v1.0.0"
+  },
   "users": [
     {
       "uid": "uid user",
