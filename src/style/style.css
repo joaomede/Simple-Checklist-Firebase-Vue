@@ -1,11 +1,16 @@
 .my-card {
-  width: 100%;
-  max-width: 700px;
-  padding: 4px;
+  width: 90%;
+  max-width: 500px;
+  margin: 16px;
+}
+
+.v-dialog {
+  max-width: 500px;
 }
 
 .loginBox {
-  max-width: 400px;
+  width: auto;
+  max-width: 500px;
   margin: 16px;
 }
 
