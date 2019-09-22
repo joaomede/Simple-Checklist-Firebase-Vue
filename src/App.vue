@@ -49,17 +49,15 @@
 
           <div class="flex-grow-1"></div>
 
-          <v-btn icon>
+          <v-btn icon v-if="user.uid == null" to="login">
             <v-icon>fas fa-sign-in-alt</v-icon>
           </v-btn>
 
-          <v-btn icon>
+          <v-btn icon v-if="user.uid != null" @click="logout()">
             <v-icon>fas fa-sign-out-alt</v-icon>
           </v-btn>
         </v-app-bar>
       </div>
-    </v-row>
-
     <v-content>
       <router-view> </router-view>
     </v-content>
