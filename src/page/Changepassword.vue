@@ -22,7 +22,7 @@
       ></v-text-field>
       <div class="text-center my-2">
         <v-btn color="primary" class="ma-2" to="home">Back</v-btn>
-        <v-btn color="green" class="ma-2" @click="changePassword()">Save</v-btn>
+          <v-btn color="green" dark class="ma-2" @click="changePassword()">Save</v-btn>
       </div>
     </v-card>
   </div>

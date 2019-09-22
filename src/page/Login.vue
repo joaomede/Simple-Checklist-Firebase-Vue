@@ -14,7 +14,7 @@
           type="Password"
         ></v-text-field>
         <div class="text-center my-2">
-          <v-btn color="green" class="ma-2" @click="login()">Login</v-btn>
+          <v-btn color="green" dark class="ma-2" @click="login()">Login</v-btn>
         </div>
         <div class="text-center my-2">
           <v-btn color="primary" class="ma-2" @click="dialogForgot = true">Forgot Password</v-btn>
@@ -54,7 +54,7 @@
 
           <div class="text-center my-2">
             <v-btn color="primary" class="ma-2" @click="dialogRegister = false">Back</v-btn>
-            <v-btn color="green" class="ma-2" @click="register()">Register</v-btn>
+            <v-btn color="green" dark class="ma-2" @click="register()">Register</v-btn>
           </div>
         </v-col>
       </v-card>
@@ -68,7 +68,7 @@
           <v-text-field v-model="localUser.email" :rules="[rules.required, rules.email]" label="E-mail"></v-text-field>
           <div class="text-center my-2">
             <v-btn color="primary" class="ma-2" @click="dialogForgot = false">Back</v-btn>
-            <v-btn color="green" class="ma-2" @click="forgotPassword()">Recover Password</v-btn>
+            <v-btn color="green" dark class="ma-2" @click="forgotPassword()">Recover Password</v-btn>
           </div>
         </v-col>
       </v-card>
