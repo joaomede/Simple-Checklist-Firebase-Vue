@@ -149,14 +149,14 @@ export default {
           this.setUserProfile(resp);
         })
         .catch(err => {
-          this.$notify("Error trying to register name, contact administrator", "red");
+          console.log("Error trying to register name, contact administrator: " + err);
         });
     },
     setUserProfile(resp) {
       const newUser = {
         uid: resp.user.uid,
-        name: this.userLocal.name,
-        email: this.userLocal.email,
+        name: this.localUser.name,
+        email: this.localUser.email,
         permission: "normal"
       };
       this.$db
@@ -166,11 +166,11 @@ export default {
         .then(() => {
           this.$cookies.set("user", resp.user);
           this.$store.dispatch("setUser");
-          this.$notify(`Welcome ${this.userLocal.name}`, "green");
+          console.log(`Welcome ${this.localUser.name}`);
           this.$router.replace("home");
         })
         .catch(err => {
-          this.$notify("Error trying to register name, contact administrator", "red");
+          console.log("Error trying to register name, contact administrator: " + err);
         });
     },
     forgotPassword() {
