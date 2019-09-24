@@ -40,28 +40,26 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-row class="child-flex">
-      <div>
-        <v-app-bar app>
-          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <div>
+      <v-app-bar app>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-          <v-toolbar-title>Simple Checklist</v-toolbar-title>
+        <v-toolbar-title>Simple Checklist</v-toolbar-title>
 
-          <div class="flex-grow-1"></div>
+        <div class="flex-grow-1"></div>
 
-          <v-btn icon v-if="user.uid == null" to="login">
-            <v-icon>fas fa-sign-in-alt</v-icon>
-          </v-btn>
+        <v-btn icon v-if="user.uid == null" to="login">
+          <v-icon>fas fa-sign-in-alt</v-icon>
+        </v-btn>
 
-          <v-btn icon v-if="user.uid != null" @click="logout()">
-            <v-icon>fas fa-sign-out-alt</v-icon>
-          </v-btn>
-        </v-app-bar>
-      </div>
-      <v-content>
-        <router-view> </router-view>
-      </v-content>
-    </v-row>
+        <v-btn icon v-if="user.uid != null" @click="logout()">
+          <v-icon>fas fa-sign-out-alt</v-icon>
+        </v-btn>
+      </v-app-bar>
+    </div>
+    <v-content>
+      <router-view> </router-view>
+    </v-content>
 
     <v-footer color="indigo" app>
       <span class="white--text">&copy; 2019</span>
@@ -92,6 +90,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>
