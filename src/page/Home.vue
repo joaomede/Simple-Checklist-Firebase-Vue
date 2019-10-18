@@ -21,7 +21,7 @@
       <v-tabs-items v-model="tab">
         <v-tab-item value="pending">
           <v-card style="height: 90%">
-            <v-list-item v-for="item in listChecklistNonComplete" :key="item.idChecklist" @click="">
+            <v-list-item v-for="item in listChecklistNonComplete" :key="item.idChecklist" @click>
               <v-list-item-avatar>
                 <v-icon class="far fa-clock" v-text="item.icon"></v-icon>
               </v-list-item-avatar>
@@ -46,7 +46,29 @@
         </v-tab-item>
 
         <v-tab-item value="complete">
-          teste 2
+          <v-card style="height: 90%">
+            <v-list-item v-for="item in listChecklistComplete" :key="item.idChecklist" @click>
+              <v-list-item-avatar>
+                <v-icon class="far fa-clock" v-text="item.icon"></v-icon>
+              </v-list-item-avatar>
+
+              <v-list-item-content>
+                <v-list-item-title v-text="item.title"></v-list-item-title>
+              </v-list-item-content>
+
+              <v-list-item-action>
+                <v-btn icon>
+                  <v-icon color="red">far fa-trash-alt</v-icon>
+                </v-btn>
+              </v-list-item-action>
+
+              <v-list-item-action style="margin-left: 1px;">
+                <v-btn icon>
+                  <v-icon color="red">far fa-trash-alt</v-icon>
+                </v-btn>
+              </v-list-item-action>
+            </v-list-item>
+          </v-card>
         </v-tab-item>
       </v-tabs-items>
     </v-card>
@@ -163,11 +185,11 @@ export default {
           // error
         });
     },
-    reset(){
+    reset() {
       this.checklist = {
         title: null,
-        content: null,
-      }
+        content: null
+      };
     }
   },
   created() {
