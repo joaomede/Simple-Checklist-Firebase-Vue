@@ -1,6 +1,6 @@
 <template>
   <div class="centralDiv">
-    <v-btn fab dark small color="primary" fixed right bottom @click="dialogCreateNewChecklist = true">
+    <v-btn fab dark small color="primary" fixed right bottom @click="dialogCreateNewChecklist = true, reset()">
       <v-icon dark>fas fa-plus</v-icon>
     </v-btn>
 
@@ -162,6 +162,12 @@ export default {
         .catch(() => {
           // error
         });
+    },
+    reset(){
+      this.checklist = {
+        title: null,
+        content: null,
+      }
     }
   },
   created() {
