@@ -1,6 +1,6 @@
 <template>
   <div class="centralDiv">
-    <v-btn fab dark small color="primary" fixed right bottom @click="dialogCreateNewChecklist = true, reset()">
+    <v-btn fab dark small color="primary" fixed right bottom @click="(dialogCreateNewChecklist = true), reset()">
       <v-icon dark>fas fa-plus</v-icon>
     </v-btn>
 
@@ -12,6 +12,7 @@
           Pending
           <v-icon>far fa-clock</v-icon>
         </v-tab>
+
         <v-tab href="#complete">
           Complete
           <v-icon>fas fa-clipboard-check</v-icon>
@@ -21,7 +22,9 @@
       <v-tabs-items v-model="tab">
         <v-tab-item value="pending">
           <v-card style="height: 90%">
-            <v-list-item v-for="item in listChecklistNonComplete" :key="item.idChecklist" @click>
+            <v-list-item v-for="item in listChecklistNonComplete" :key="item.idChecklist" @click="showTask(item)">
+              <div></div>
+
               <v-list-item-avatar>
                 <v-icon class="far fa-clock" v-text="item.icon"></v-icon>
               </v-list-item-avatar>
@@ -31,16 +34,11 @@
               </v-list-item-content>
 
               <v-list-item-action>
-                <v-btn icon>
+                <v-btn icon @click="(this.checklist = item)((this.dialogDeleteConfirm = true))">
                   <v-icon color="red">far fa-trash-alt</v-icon>
                 </v-btn>
               </v-list-item-action>
 
-              <v-list-item-action style="margin-left: 1px;">
-                <v-btn icon>
-                  <v-icon color="red">far fa-trash-alt</v-icon>
-                </v-btn>
-              </v-list-item-action>
             </v-list-item>
           </v-card>
         </v-tab-item>
@@ -87,6 +85,28 @@
         </v-col>
       </v-card>
     </v-dialog>
+
+    <v-dialog v-model="dialogShowTask" max-width="290">
+      <v-card>
+        <v-card-title class="headline">{{ this.checklist.title }}</v-card-title>
+
+        <v-card-text>
+          {{ this.checklist.content }}
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn color="blue darken-1" text @click="dialogShowTask = false">
+            Back
+          </v-btn>
+
+          <v-btn color="green darken-1" text @click="">
+            Edit
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -106,7 +126,8 @@ export default {
 
       tab: null,
 
-      dialogCreateNewChecklist: null
+      dialogCreateNewChecklist: null,
+      dialogShowTask: null
     };
   },
   watch: {
@@ -184,6 +205,10 @@ export default {
         .catch(() => {
           // error
         });
+    },
+    showTask(obj) {
+      this.checklist = obj;
+      this.dialogShowTask = true;
     },
     reset() {
       this.checklist = {
