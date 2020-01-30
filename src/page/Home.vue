@@ -62,7 +62,7 @@
               <v-list-item-action>
                 <v-btn
                   icon
-                  @click="(this.checklist = item)((this.dialogDeleteConfirm = true))"
+                  @click="checklist = item; dialogDeleteConfirm = true"
                 >
                   <v-icon color="red">
                     far fa-trash-alt
@@ -78,7 +78,7 @@
             <v-list-item
               v-for="item in listChecklistComplete"
               :key="item.idChecklist"
-              @click
+              @click="''"
             >
               <v-list-item-avatar>
                 <v-icon
@@ -157,11 +157,11 @@
     >
       <v-card>
         <v-card-title class="headline">
-          {{ this.checklist.title }}
+          {{ checklist.title }}
         </v-card-title>
 
         <v-card-text>
-          {{ this.checklist.content }}
+          {{ checklist.content }}
         </v-card-text>
 
         <v-card-actions>
@@ -178,7 +178,7 @@
           <v-btn
             color="green darken-1"
             text
-            @click=""
+            @click="''"
           >
             Edit
           </v-btn>
