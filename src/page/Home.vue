@@ -1,13 +1,32 @@
 <template>
   <div class="centralDiv">
-    <v-btn fab dark small color="primary" fixed right bottom @click="(dialogCreateNewChecklist = true), reset()">
-      <v-icon dark>fas fa-plus</v-icon>
+    <v-btn
+      fab
+      dark
+      small
+      color="primary"
+      fixed
+      right
+      bottom
+      @click="(dialogCreateNewChecklist = true), reset()"
+    >
+      <v-icon dark>
+        fas fa-plus
+      </v-icon>
     </v-btn>
 
     <v-card class="my-card">
-      <h2 class="text-center">Your Checklist</h2>
+      <h2 class="text-center">
+        Your Checklist
+      </h2>
 
-      <v-tabs v-model="tab" background-color="indigo" centered dark icons-and-text>
+      <v-tabs
+        v-model="tab"
+        background-color="indigo"
+        centered
+        dark
+        icons-and-text
+      >
         <v-tab href="#pending">
           Pending
           <v-icon>far fa-clock</v-icon>
@@ -22,47 +41,69 @@
       <v-tabs-items v-model="tab">
         <v-tab-item value="pending">
           <v-card style="height: 90%">
-            <v-list-item v-for="item in listChecklistNonComplete" :key="item.idChecklist" @click="showTask(item)">
-              <div></div>
+            <v-list-item
+              v-for="item in listChecklistNonComplete"
+              :key="item.idChecklist"
+              @click="showTask(item)"
+            >
+              <div />
 
               <v-list-item-avatar>
-                <v-icon class="far fa-clock" v-text="item.icon"></v-icon>
+                <v-icon
+                  class="far fa-clock"
+                  v-text="item.icon"
+                />
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title v-text="item.title"></v-list-item-title>
+                <v-list-item-title v-text="item.title" />
               </v-list-item-content>
 
               <v-list-item-action>
-                <v-btn icon @click="(this.checklist = item)((this.dialogDeleteConfirm = true))">
-                  <v-icon color="red">far fa-trash-alt</v-icon>
+                <v-btn
+                  icon
+                  @click="(this.checklist = item)((this.dialogDeleteConfirm = true))"
+                >
+                  <v-icon color="red">
+                    far fa-trash-alt
+                  </v-icon>
                 </v-btn>
               </v-list-item-action>
-
             </v-list-item>
           </v-card>
         </v-tab-item>
 
         <v-tab-item value="complete">
           <v-card style="height: 90%">
-            <v-list-item v-for="item in listChecklistComplete" :key="item.idChecklist" @click>
+            <v-list-item
+              v-for="item in listChecklistComplete"
+              :key="item.idChecklist"
+              @click
+            >
               <v-list-item-avatar>
-                <v-icon class="far fa-clock" v-text="item.icon"></v-icon>
+                <v-icon
+                  class="far fa-clock"
+                  v-text="item.icon"
+                />
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title v-text="item.title"></v-list-item-title>
+                <v-list-item-title v-text="item.title" />
               </v-list-item-content>
 
               <v-list-item-action>
                 <v-btn icon>
-                  <v-icon color="red">far fa-trash-alt</v-icon>
+                  <v-icon color="red">
+                    far fa-trash-alt
+                  </v-icon>
                 </v-btn>
               </v-list-item-action>
 
               <v-list-item-action style="margin-left: 1px;">
                 <v-btn icon>
-                  <v-icon color="red">far fa-trash-alt</v-icon>
+                  <v-icon color="red">
+                    far fa-trash-alt
+                  </v-icon>
                 </v-btn>
               </v-list-item-action>
             </v-list-item>
@@ -73,35 +114,72 @@
 
     <v-dialog v-model="dialogCreateNewChecklist">
       <v-card>
-        <h2 class="text-center">Your Checklist</h2>
-        <v-col cols="12" sm="12">
-          <v-text-field v-model="checklist.title" label="Title for checklist"></v-text-field>
-          <v-text-field v-model="checklist.content" label="Content for checklist"></v-text-field>
+        <h2 class="text-center">
+          Your Checklist
+        </h2>
+        <v-col
+          cols="12"
+          sm="12"
+        >
+          <v-text-field
+            v-model="checklist.title"
+            label="Title for checklist"
+          />
+          <v-text-field
+            v-model="checklist.content"
+            label="Content for checklist"
+          />
 
           <div class="text-center my-2">
-            <v-btn color="primary" class="ma-2" @click="dialogCreateNewChecklist = false">Back</v-btn>
-            <v-btn color="green" dark class="ma-2" @click="createChecklist()">Register</v-btn>
+            <v-btn
+              color="primary"
+              class="ma-2"
+              @click="dialogCreateNewChecklist = false"
+            >
+              Back
+            </v-btn>
+            <v-btn
+              color="green"
+              dark
+              class="ma-2"
+              @click="createChecklist()"
+            >
+              Register
+            </v-btn>
           </div>
         </v-col>
       </v-card>
     </v-dialog>
 
-    <v-dialog v-model="dialogShowTask" max-width="290">
+    <v-dialog
+      v-model="dialogShowTask"
+      max-width="290"
+    >
       <v-card>
-        <v-card-title class="headline">{{ this.checklist.title }}</v-card-title>
+        <v-card-title class="headline">
+          {{ this.checklist.title }}
+        </v-card-title>
 
         <v-card-text>
           {{ this.checklist.content }}
         </v-card-text>
 
         <v-card-actions>
-          <v-spacer></v-spacer>
+          <v-spacer />
 
-          <v-btn color="blue darken-1" text @click="dialogShowTask = false">
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="dialogShowTask = false"
+          >
             Back
           </v-btn>
 
-          <v-btn color="green darken-1" text @click="">
+          <v-btn
+            color="green darken-1"
+            text
+            @click=""
+          >
             Edit
           </v-btn>
         </v-card-actions>
@@ -132,6 +210,9 @@ export default {
   },
   watch: {
     user: "init"
+  },
+  created() {
+    this.init();
   },
   methods: {
     init() {
@@ -216,9 +297,6 @@ export default {
         content: null
       };
     }
-  },
-  created() {
-    this.init();
   }
 };
 </script>

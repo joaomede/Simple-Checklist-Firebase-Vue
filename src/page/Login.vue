@@ -1,60 +1,125 @@
 <template>
   <div class="centralDiv">
     <v-card class="loginBox">
-      <h2 class="text-center">Login</h2>
-      <v-col cols="12" sm="12">
-        <v-text-field v-model="localUser.email" :rules="[rules.required, rules.email]" label="E-mail"></v-text-field>
+      <h2 class="text-center">
+        Login
+      </h2>
+      <v-col
+        cols="12"
+        sm="12"
+      >
+        <v-text-field
+          v-model="localUser.email"
+          :rules="[rules.required, rules.email]"
+          label="E-mail"
+        />
       </v-col>
 
-      <v-col cols="12" sm="12">
+      <v-col
+        cols="12"
+        sm="12"
+      >
         <v-text-field
           v-model="localUser.password"
           :rules="[rules.required, rules.min]"
           label="Your Password"
           type="Password"
-        ></v-text-field>
+        />
         <div class="text-center my-2">
-          <v-btn color="green" dark class="ma-2" @click="login()">Login</v-btn>
+          <v-btn
+            color="green"
+            dark
+            class="ma-2"
+            @click="login()"
+          >
+            Login
+          </v-btn>
         </div>
         <div class="text-center my-2">
-          <v-btn color="primary" class="ma-2" @click="dialogForgot = true">Forgot Password</v-btn>
-          <v-btn color="primary" class="ma-2" @click="dialogRegister = true">Register</v-btn>
+          <v-btn
+            color="primary"
+            class="ma-2"
+            @click="dialogForgot = true"
+          >
+            Forgot Password
+          </v-btn>
+          <v-btn
+            color="primary"
+            class="ma-2"
+            @click="dialogRegister = true"
+          >
+            Register
+          </v-btn>
         </div>
       </v-col>
     </v-card>
 
     <v-dialog v-model="dialogRegister">
       <v-card>
-        <h2 class="text-center">Register</h2>
+        <h2 class="text-center">
+          Register
+        </h2>
 
-        <v-col cols="12" sm="12">
-          <v-text-field v-model="localUser.name" label="Your Name"></v-text-field>
+        <v-col
+          cols="12"
+          sm="12"
+        >
+          <v-text-field
+            v-model="localUser.name"
+            label="Your Name"
+          />
         </v-col>
 
-        <v-col cols="12" sm="12">
-          <v-text-field v-model="localUser.email" :rules="[rules.required, rules.email]" label="E-mail"></v-text-field>
+        <v-col
+          cols="12"
+          sm="12"
+        >
+          <v-text-field
+            v-model="localUser.email"
+            :rules="[rules.required, rules.email]"
+            label="E-mail"
+          />
         </v-col>
 
-        <v-col cols="12" sm="12">
+        <v-col
+          cols="12"
+          sm="12"
+        >
           <v-text-field
             v-model="localUser.password"
             :rules="[rules.required, rules.min]"
             label="Your Password"
             type="Password"
-          ></v-text-field>
+          />
         </v-col>
 
-        <v-col cols="12" sm="12">
+        <v-col
+          cols="12"
+          sm="12"
+        >
           <v-text-field
             v-model="localUser.password1"
             :rules="[rules.required, rules.min]"
             label="Your Password"
             type="Password"
-          ></v-text-field>
+          />
 
           <div class="text-center my-2">
-            <v-btn color="primary" class="ma-2" @click="dialogRegister = false">Back</v-btn>
-            <v-btn color="green" dark class="ma-2" @click="register()">Register</v-btn>
+            <v-btn
+              color="primary"
+              class="ma-2"
+              @click="dialogRegister = false"
+            >
+              Back
+            </v-btn>
+            <v-btn
+              color="green"
+              dark
+              class="ma-2"
+              @click="register()"
+            >
+              Register
+            </v-btn>
           </div>
         </v-col>
       </v-card>
@@ -62,13 +127,35 @@
 
     <v-dialog v-model="dialogForgot">
       <v-card>
-        <h2 class="text-center">Recover your access</h2>
+        <h2 class="text-center">
+          Recover your access
+        </h2>
 
-        <v-col cols="12" sm="12">
-          <v-text-field v-model="localUser.email" :rules="[rules.required, rules.email]" label="E-mail"></v-text-field>
+        <v-col
+          cols="12"
+          sm="12"
+        >
+          <v-text-field
+            v-model="localUser.email"
+            :rules="[rules.required, rules.email]"
+            label="E-mail"
+          />
           <div class="text-center my-2">
-            <v-btn color="primary" class="ma-2" @click="dialogForgot = false">Back</v-btn>
-            <v-btn color="green" dark class="ma-2" @click="forgotPassword()">Recover Password</v-btn>
+            <v-btn
+              color="primary"
+              class="ma-2"
+              @click="dialogForgot = false"
+            >
+              Back
+            </v-btn>
+            <v-btn
+              color="green"
+              dark
+              class="ma-2"
+              @click="forgotPassword()"
+            >
+              Recover Password
+            </v-btn>
           </div>
         </v-col>
       </v-card>
@@ -99,6 +186,9 @@ export default {
       dialogRegister: false,
       dialogForgot: false
     };
+  },
+  created () {
+    this.checkLogin();
   },
   methods: {
     login() {
@@ -189,9 +279,6 @@ export default {
         this.$router.replace("home");
       }
     }
-  },
-  created () {
-    this.checkLogin();
   },
 };
 </script>

@@ -1,6 +1,10 @@
 <template>
   <v-app id="app">
-    <v-navigation-drawer v-model="drawer" app style="width: 180px">
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      style="width: 180px"
+    >
       <v-list dense>
         <v-list-item to="home">
           <v-list-item-action style="margin-right: 10px">
@@ -42,26 +46,37 @@
 
     <div>
       <v-app-bar app>
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 
         <v-toolbar-title>Simple Checklist</v-toolbar-title>
 
-        <div class="flex-grow-1"></div>
+        <div class="flex-grow-1" />
 
-        <v-btn icon v-if="user.uid == null" to="login">
+        <v-btn
+          v-if="user.uid == null"
+          icon
+          to="login"
+        >
           <v-icon>fas fa-sign-in-alt</v-icon>
         </v-btn>
 
-        <v-btn icon v-if="user.uid != null" @click="logout()">
+        <v-btn
+          v-if="user.uid != null"
+          icon
+          @click="logout()"
+        >
           <v-icon>fas fa-sign-out-alt</v-icon>
         </v-btn>
       </v-app-bar>
     </div>
     <v-content>
-      <router-view> </router-view>
+      <router-view />
     </v-content>
 
-    <v-footer color="indigo" app>
+    <v-footer
+      color="indigo"
+      app
+    >
       <span class="white--text">&copy; 2019</span>
     </v-footer>
   </v-app>
@@ -74,6 +89,9 @@ export default {
       drawer: null
     };
   },
+  created() {
+    this.init();
+  },
   methods: {
     logout() {
       this.$firebase.auth().signOut();
@@ -84,9 +102,6 @@ export default {
     init() {
       this.$store.dispatch("setUser");
     }
-  },
-  created() {
-    this.init();
   }
 };
 </script>

@@ -1,27 +1,51 @@
 <template>
   <div class="centralDiv">
     <v-card class="loginBox">
-      <h2 class="text-center" style="margin: 8px">Change Your Password</h2>
+      <h2
+        class="text-center"
+        style="margin: 8px"
+      >
+        Change Your Password
+      </h2>
 
-      <v-col cols="12" sm="12">
+      <v-col
+        cols="12"
+        sm="12"
+      >
         <v-text-field
           v-model="password1"
           :rules="[rules.required, rules.min]"
           type="Password"
           label="New password"
-        ></v-text-field>
+        />
       </v-col>
 
-      <v-col cols="12" sm="12">
+      <v-col
+        cols="12"
+        sm="12"
+      >
         <v-text-field
           v-model="password2"
           :rules="[rules.required, rules.min]"
           type="Password"
           label="Repeat new password"
-        ></v-text-field>
+        />
         <div class="text-center my-2">
-          <v-btn color="primary" class="ma-2" to="home">Back</v-btn>
-          <v-btn color="green" dark class="ma-2" @click="changePassword()">Save</v-btn>
+          <v-btn
+            color="primary"
+            class="ma-2"
+            to="home"
+          >
+            Back
+          </v-btn>
+          <v-btn
+            color="green"
+            dark
+            class="ma-2"
+            @click="changePassword()"
+          >
+            Save
+          </v-btn>
         </div>
       </v-col>
     </v-card>
