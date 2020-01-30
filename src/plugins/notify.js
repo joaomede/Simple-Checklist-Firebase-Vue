@@ -1,5 +1,5 @@
-import Vue from "vue";
+import Vue from 'vue'
 
 export default async () => {
-  Vue.prototype.$notify = () => {};
-};
+  Vue.prototype.$notify = () => {}
+}

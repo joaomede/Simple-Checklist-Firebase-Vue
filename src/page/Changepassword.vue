@@ -54,38 +54,38 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      password1: "",
-      password2: "",
+      password1: '',
+      password2: '',
       rules: {
-        required: value => !!value || "Required.",
-        min: v => v.length >= 8 || "Min 8 characters"
+        required: value => !!value || 'Required.',
+        min: v => v.length >= 8 || 'Min 8 characters'
       }
-    };
+    }
   },
   methods: {
-    changePassword() {
-      const user = this.$firebase.auth().currentUser;
+    changePassword () {
+      const user = this.$firebase.auth().currentUser
       if (this.password1 === this.password2) {
         user
           .updatePassword(this.password1)
           .then(() => {
-            console.log("Password updated successfully");
-            this.dialog = false;
+            console.log('Password updated successfully')
+            this.dialog = false
           })
           .catch(error => {
-            console.log("Error updating password" + error);
-          });
-        this.password1 = "";
-        this.password2 = "";
+            console.log('Error updating password' + error)
+          })
+        this.password1 = ''
+        this.password2 = ''
       } else {
-        console.log("Passwords are different, they must be identical");
-        this.dialog = false;
+        console.log('Passwords are different, they must be identical')
+        this.dialog = false
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

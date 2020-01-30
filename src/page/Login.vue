@@ -164,123 +164,122 @@
 </template>
 
 <script>
-import { stringify } from "querystring";
 export default {
-  data() {
+  data () {
     return {
       localUser: {
-        name: "",
-        email: "",
-        password: "",
-        password1: ""
+        name: '',
+        email: '',
+        password: '',
+        password1: ''
       },
       rules: {
-        min: v => v.length >= 8 || "Min 8 characters",
-        required: value => !!value || "Required.",
+        min: v => v.length >= 8 || 'Min 8 characters',
+        required: value => !!value || 'Required.',
         email: value => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          return pattern.test(value) || "Invalid e-mail.";
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
         }
       },
 
       dialogRegister: false,
       dialogForgot: false
-    };
+    }
   },
   created () {
-    this.checkLogin();
+    this.checkLogin()
   },
   methods: {
-    login() {
+    login () {
       this.$firebase
         .auth()
         .signInWithEmailAndPassword(this.localUser.email, this.localUser.password)
         .then(resp => {
-          this.$cookies.set("user", JSON.stringify(resp.user));
-          this.$router.replace("home");
+          this.$cookies.set('user', JSON.stringify(resp.user))
+          this.$router.replace('home')
           this.$db
-            .collection("users")
+            .collection('users')
             .doc(resp.user.uid)
             .get()
             .then(doc => {
-              this.$store.dispatch("setUser", doc.data());
-              console.log(`Welcome Back ${doc.data().name}`);
-            });
+              this.$store.dispatch('setUser', doc.data())
+              console.log(`Welcome Back ${doc.data().name}`)
+            })
         })
         .catch(() => {
-          console.log("Authentication issues, check email and password");
-        });
+          console.log('Authentication issues, check email and password')
+        })
     },
-    register() {
+    register () {
       this.$firebase
         .auth()
         .createUserWithEmailAndPassword(this.localUser.email, this.localUser.password)
         .then(resp => {
-          this.setColorSchemeInit(resp);
-          this.dialogRegister = false;
-          console.log("Registration successfully Complete");
+          this.setColorSchemeInit(resp)
+          this.dialogRegister = false
+          console.log('Registration successfully Complete')
         })
         .catch(err => {
-          console.log("Error trying to register name, contact administrator: " + err);
-        });
-      this.dialogRegister = false;
+          console.log('Error trying to register name, contact administrator: ' + err)
+        })
+      this.dialogRegister = false
     },
-    setColorSchemeInit(resp) {
+    setColorSchemeInit (resp) {
       const colorSchemeDefault = {
-        textColorChecklist: "#000000",
-        backgroundColorChecklist: "#ffffff",
+        textColorChecklist: '#000000',
+        backgroundColorChecklist: '#ffffff',
         uid: resp.user.uid
-      };
+      }
       this.$db
-        .collection("app")
+        .collection('app')
         .doc(resp.user.uid)
         .set(colorSchemeDefault)
         .then(() => {
-          this.setUserProfile(resp);
+          this.setUserProfile(resp)
         })
         .catch(err => {
-          console.log("Error trying to register name, contact administrator: " + err);
-        });
+          console.log('Error trying to register name, contact administrator: ' + err)
+        })
     },
-    setUserProfile(resp) {
+    setUserProfile (resp) {
       const newUser = {
         uid: resp.user.uid,
         name: this.localUser.name,
         email: this.localUser.email,
-        permission: "normal"
-      };
+        permission: 'normal'
+      }
       this.$db
-        .collection("users")
+        .collection('users')
         .doc(resp.user.uid)
         .set(newUser)
         .then(() => {
-          this.$cookies.set("user", resp.user);
-          this.$store.dispatch("setUser");
-          console.log(`Welcome ${this.localUser.name}`);
-          this.$router.replace("home");
+          this.$cookies.set('user', resp.user)
+          this.$store.dispatch('setUser')
+          console.log(`Welcome ${this.localUser.name}`)
+          this.$router.replace('home')
         })
         .catch(err => {
-          console.log("Error trying to register name, contact administrator: " + err);
-        });
+          console.log('Error trying to register name, contact administrator: ' + err)
+        })
     },
-    forgotPassword() {
+    forgotPassword () {
       this.$firebase
         .auth()
         .sendPasswordResetEmail(this.localUser.email)
         .then(() => {
-          console.log("Recovery email sent successfully");
+          console.log('Recovery email sent successfully')
         })
         .catch(err => {
-          console.log("Error trying to retrieve email: " + err);
-        });
+          console.log('Error trying to retrieve email: ' + err)
+        })
     },
-    checkLogin() {
+    checkLogin () {
       if (this.user != null) {
-        this.$router.replace("home");
+        this.$router.replace('home')
       }
     }
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>

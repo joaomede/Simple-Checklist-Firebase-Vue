@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import VueCookies from "vue-cookies"
+import VueCookies from 'vue-cookies'
 
 Vue.use(VueRouter)
 
@@ -10,11 +10,11 @@ const router = new VueRouter({
   routes: [
     {
       path: '*',
-      redirect: 'login',
+      redirect: 'login'
     },
     {
       path: '/',
-      redirect: 'login',
+      redirect: 'login'
     },
     {
       path: '/login',
@@ -51,27 +51,26 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  let auth = to.matched.some(record => record.meta.requerAuth);
-  const user = VueCookies.get("user");
+  let auth = to.matched.some(record => record.meta.requerAuth)
+  const user = VueCookies.get('user')
 
   if (auth) {
     if (user != null) {
       if (user.uid != null) {
-        next();
+        next()
       } else {
         next({
-          path: "/login"
-        });
+          path: '/login'
+        })
       }
     } else {
       next({
-        path: "/login"
-      });
+        path: '/login'
+      })
     }
   } else {
-    next();
+    next()
   }
+})
 
-});
-
-export default router;
+export default router

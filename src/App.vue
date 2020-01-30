@@ -2,7 +2,7 @@
   <v-app id="app">
     <Header />
     <Drawer />
-    
+
     <v-content>
       <router-view />
     </v-content>
@@ -21,24 +21,24 @@ export default {
     Header,
     Drawer
   },
-  data() {
+  data () {
     return {
       drawer: null
-    };
+    }
   },
-  created() {
-    this.init();
+  created () {
+    this.init()
   },
   methods: {
-    logout() {
-      this.$firebase.auth().signOut();
-      this.$cookies.remove("user");
-      this.$store.dispatch("setUser");
-      this.$router.replace("login");
+    logout () {
+      this.$firebase.auth().signOut()
+      this.$cookies.remove('user')
+      this.$store.dispatch('setUser')
+      this.$router.replace('login')
     },
-    init() {
-      this.$store.dispatch("setUser");
+    init () {
+      this.$store.dispatch('setUser')
     }
   }
-};
+}
 </script>

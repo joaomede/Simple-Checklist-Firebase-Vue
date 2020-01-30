@@ -190,11 +190,11 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       checklist: {
-        title: "",
-        content: "",
+        title: '',
+        content: '',
         complete: false,
         createdAt: null,
         finishDate: null
@@ -206,44 +206,44 @@ export default {
 
       dialogCreateNewChecklist: null,
       dialogShowTask: null
-    };
+    }
   },
   watch: {
-    user: "init"
+    user: 'init'
   },
-  created() {
-    this.init();
+  created () {
+    this.init()
   },
   methods: {
-    init() {
+    init () {
       if (this.user.uid != null) {
-        this.loadingChecklist();
+        this.loadingChecklist()
       }
     },
-    loadingChecklist() {
-      this.databaseChecklist.where("complete", "==", true).onSnapshot(doc => {
-        this.listChecklistComplete = [];
+    loadingChecklist () {
+      this.databaseChecklist.where('complete', '==', true).onSnapshot(doc => {
+        this.listChecklistComplete = []
         doc.forEach(complete => {
-          this.listChecklistComplete.push(complete.data());
-        });
-      });
+          this.listChecklistComplete.push(complete.data())
+        })
+      })
 
-      this.databaseChecklist.where("complete", "==", false).onSnapshot(doc => {
-        this.listChecklistNonComplete = [];
+      this.databaseChecklist.where('complete', '==', false).onSnapshot(doc => {
+        this.listChecklistNonComplete = []
         doc.forEach(nonComplete => {
-          this.listChecklistNonComplete.push(nonComplete.data());
-        });
-      });
+          this.listChecklistNonComplete.push(nonComplete.data())
+        })
+      })
     },
-    createChecklist() {
-      const a = this.checklist.title;
-      const b = this.checklist.content;
+    createChecklist () {
+      const a = this.checklist.title
+      const b = this.checklist.content
 
-      if ((a == null) | (a == "")) {
-        console.log("Erro, the title is empty");
+      if ((a == null) | (a === '')) {
+        console.log('Erro, the title is empty')
       }
-      if ((b == null) | (b == "")) {
-        console.log("Erro, the content is empty");
+      if ((b == null) | (b === '')) {
+        console.log('Erro, the content is empty')
       } else {
         this.databaseChecklist
           .add(this.checklist)
@@ -251,23 +251,23 @@ export default {
             const update = {
               idChecklist: ref.id,
               createdAt: this.$timestamp
-            };
+            }
             ref
               .update(update)
               .then(() => {
-                console.log("ok");
+                console.log('ok')
               })
               .catch(() => {
-                console.log("erro");
-              });
+                console.log('erro')
+              })
           })
           .catch(() => {
-            console.log("erro");
-          });
-        this.dialogCreateNewChecklist = false;
+            console.log('erro')
+          })
+        this.dialogCreateNewChecklist = false
       }
     },
-    updateChecklist(object) {
+    updateChecklist (object) {
       this.dbChecklist
         .update(object)
         .then(() => {
@@ -275,9 +275,9 @@ export default {
         })
         .catch(() => {
           // error
-        });
+        })
     },
-    deleteChecklist() {
+    deleteChecklist () {
       this.dbChecklist
         .delete()
         .then(() => {
@@ -285,20 +285,20 @@ export default {
         })
         .catch(() => {
           // error
-        });
+        })
     },
-    showTask(obj) {
-      this.checklist = obj;
-      this.dialogShowTask = true;
+    showTask (obj) {
+      this.checklist = obj
+      this.dialogShowTask = true
     },
-    reset() {
+    reset () {
       this.checklist = {
         title: null,
         content: null
-      };
+      }
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

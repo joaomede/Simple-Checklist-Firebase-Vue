@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {db} from "./plugins/firebase"
-import VueCookies from "vue-cookies"
+import { db } from './plugins/firebase'
+import VueCookies from 'vue-cookies'
 
 Vue.use(Vuex)
 
@@ -13,28 +13,28 @@ export default new Vuex.Store({
   },
   getters: {
     getUser: state => {
-      return state.user;
+      return state.user
     },
     getSettingsColor: state => {
-      return state.settingsColor;
+      return state.settingsColor
     },
     getVersion: state => {
-      return state.version;
+      return state.version
     }
   },
   mutations: {
-    setUser(state) {
-      db.collection("version").onSnapshot(querySnapshot => {
+    setUser (state) {
+      db.collection('version').onSnapshot(querySnapshot => {
         querySnapshot.forEach(resp => {
-          state.version = resp.data();
-        });
-      });
+          state.version = resp.data()
+        })
+      })
 
-      const user = VueCookies.get("user")
+      const user = VueCookies.get('user')
 
       if (user != null) {
-        db.collection("users")
-          .where("uid", "==", user.uid)
+        db.collection('users')
+          .where('uid', '==', user.uid)
           .onSnapshot(querySnapshot => {
             querySnapshot.forEach(doc => {
               state.user = {
@@ -42,34 +42,33 @@ export default new Vuex.Store({
                 email: user.email,
                 name: doc.data().name,
                 permission: doc.data().permission
-              };
-              settingsColor();
-            });
-          });
+              }
+              settingsColor()
+            })
+          })
       } else {
         state.user = {
           uid: null,
           email: null,
           name: null
-        };
+        }
       }
-      function settingsColor() {
-        db.collection("app")
-          .where("uid", "==", user.uid)
+      function settingsColor () {
+        db.collection('app')
+          .where('uid', '==', user.uid)
           .onSnapshot(querySnapshot => {
             querySnapshot.forEach(doc => {
-              state.settingsColor = {};
-              state.settingsColor.textColorChecklist = doc.data().textColorChecklist;
-              state.settingsColor.backgroundColorChecklist = doc.data().backgroundColorChecklist;
-            });
-          });
+              state.settingsColor = {}
+              state.settingsColor.textColorChecklist = doc.data().textColorChecklist
+              state.settingsColor.backgroundColorChecklist = doc.data().backgroundColorChecklist
+            })
+          })
       }
     }
   },
   actions: {
-    setUser({ commit }) {
-      commit("setUser");
+    setUser ({ commit }) {
+      commit('setUser')
     }
   }
-});
-
+})

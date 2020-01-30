@@ -1,44 +1,44 @@
 export default {
   computed: {
-    user() {
+    user () {
       if (this.$store.getters.getUser != null) {
-        return this.$store.getters.getUser;
+        return this.$store.getters.getUser
       } else {
-        return { uid: null, email: null, name: null };
+        return { uid: null, email: null, name: null }
       }
     },
-    permissionAdmin() {
+    permissionAdmin () {
       if (this.user.uid != null) {
-        if (this.$store.getters.getUser.permission == "admin") {
-          return true;
+        if (this.$store.getters.getUser.permission === 'admin') {
+          return true
         }
       } else {
-        return false;
+        return false
       }
     },
-    databaseChecklist() {
+    databaseChecklist () {
       if (this.user.uid != null) {
         return this.$db
-          .collection("app")
+          .collection('app')
           .doc(this.user.uid)
-          .collection("checklist");
+          .collection('checklist')
       } else {
-        return null;
+        return null
       }
     },
-    settingsColor() {
+    settingsColor () {
       if (this.$store.getters.getSettingsColor != null) {
-        return this.$store.getters.getSettingsColor;
+        return this.$store.getters.getSettingsColor
       } else {
-        return null;
+        return null
       }
     },
-    versionCloud() {
+    versionCloud () {
       if (this.$store.getters.getVersion != null) {
-        return this.$store.getters.getVersion;
+        return this.$store.getters.getVersion
       } else {
-        return null;
+        return null
       }
     }
   }
-};
+}
