@@ -1,19 +1,8 @@
 <template>
   <div class="centralDiv">
-    <v-btn
-      fab
-      dark
-      small
-      color="primary"
-      fixed
-      right
-      bottom
-      @click="(dialogCreateNewChecklist = true), reset()"
-    >
-      <v-icon dark>
-        fas fa-plus
-      </v-icon>
-    </v-btn>
+    <AddButton
+      @eventClick="dialogCreateNewChecklist = true; reset()"
+    />
 
     <v-card class="my-card">
       <h2 class="text-center">
@@ -189,6 +178,7 @@
 </template>
 
 <script>
+import AddButton from '../components/button/addButton'
 export default {
   data () {
     return {
@@ -207,6 +197,9 @@ export default {
       dialogCreateNewChecklist: null,
       dialogShowTask: null
     }
+  },
+  components: {
+    AddButton
   },
   watch: {
     user: 'init'
