@@ -1,8 +1,9 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
+    v-model="state"
     app
     style="width: 180px"
+    @hide="eventc()"
   >
     <v-list dense>
       <v-list-item to="home">
@@ -46,7 +47,28 @@
 
 <script>
 export default {
-
+  props: {
+    drawer: {
+      type: Boolean
+    }
+  },
+  data () {
+    return {
+      state: false
+    }
+  },
+  watch: {
+    drawer: 'update',
+    state: 'teste'
+  },
+  methods: {
+    update () {
+      this.state = this.drawer
+    },
+    teste () {
+      this.$emit('eventClose', this.state)
+    }
+  }
 }
 </script>
 

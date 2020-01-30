@@ -1,7 +1,13 @@
 <template>
   <v-app id="app">
-    <Header />
-    <Drawer />
+    <Header
+      :drawer="drawer"
+      @eventClose="drawer = $event"
+    />
+    <Drawer
+      :drawer="drawer"
+      @eventClose="drawer = $event"
+    />
 
     <v-content>
       <router-view />
@@ -23,7 +29,7 @@ export default {
   },
   data () {
     return {
-      drawer: null
+      drawer: false
     }
   },
   created () {
