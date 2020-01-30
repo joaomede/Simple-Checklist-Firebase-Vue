@@ -4,22 +4,25 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
-    "firebase": "^6.6.1",
-    "vue": "^2.6.10",
-    "vue-cookies": "^1.5.13",
-    "vue-router": "^3.0.3",
-    "vuetify": "^2.0.0",
-    "vuex": "^3.0.1"
+    "core-js": "^3.6.4",
+    "firebase": "^7.7.0",
+    "vue": "^2.6.11",
+    "vue-cookies": "^1.6.1",
+    "vue-router": "^3.1.5",
+    "vuetify": "^2.2.8",
+    "vuex": "^3.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
-    "vue-cli-plugin-vuetify": "^0.6.3",
-    "vue-template-compiler": "^2.6.10"
+    "@vue/cli-service": "^4.1.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-vue": "^6.1.2",
+    "vue-cli-plugin-vuetify": "^2.0.3",
+    "vue-template-compiler": "^2.6.11"
   },
   "postcss": {
     "plugins": {
